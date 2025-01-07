@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>News Sources</title>
+    <style>
+      body {
+        background-color: black;
+        color: white;
+      }
+      h1{
+        font-size: 100px;
+        text-align: center;
+      }
+      .news-box {
+       width: 400px;
+       flex-grow: 1;
+       margin: 10px;
+       padding: 10px;
+       background-color: rgb(28, 28, 28);
+       text-align: center;
+      }
+      .news-box img {
+        height: 200px;
+      }
+      #news-container{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+      }
+      a{
+        text-decoration: none;
+        color: white;
+      }
+      .title{
+        font-size: 25px;
+        font-weight: bold;
+      }
+      .description{
+        font-size: 20px;
+        color: rgb(188, 188, 188);
+      }
+      .auther{
+        color: gray;
+        font-size: 16px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Top 10 Headlines</h1>
+      <div id="news-container"></div>
+    </div>
+
+    <script>
+      const apiKey = "0c6b7b94f5b149509cef0769124a4841"; // Replace with your NewsAPI key
+      // const apiUrl = `https://newsapi.org/v2/top-headlines/sources?apiKey=${apiKey}`;
+      const apiUrl = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`;
+      // const apiUrl = `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/top-headlines/sources?apiKey=${apiKey}`;
+
+      fetch(apiUrl)
+        .then((response) => response.json())
+        .then((data) => {
+          const newsContainer = document.getElementById("news-container");
+          newsContainer.innerHTML = data.articles.map(
+            (news) => `
+          <a href=${news.url}>
+           <div class="news-box">
+              <img src=${news.urlToImage || "assets/img/Shivam.jpg"} alt="" srcset="" />
+              <p class="title">${news.title.slice(0,30)}...</p>
+              <p class="description">${news.description || "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit, quasi?"}</p>
+              <p class="auther">${news.author} | ${news.publishedAt}</p>
+            </div>
+          </a>
+          `
+          ).join("");
+        });
+    </script>
+  </body>
+</html>
