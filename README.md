@@ -12,4 +12,4 @@ supertuna07/supertuna07 is a ✨ special ✨ repository because its `README.md` 
 You can click the Preview link to take a look at your changes.
 --->
 
-Live website https://Supertunanishad14.github.io/supertuna07/
+Live website https://shivamnishad14.github.io/supertuna07/
